@@ -1,0 +1,60 @@
+﻿:root {
+    --main-color: #3d506d;
+    --maincolor-hover: #fcc463;
+    --main-color-font: #8a99af;
+    --mnufix: #65758e;
+}
+
+
+.top {
+    background-color: #f2f2f2
+}
+
+.hvr-bounce-to-bottom:before, .material-dropdown figure, .material-scrolltop, .menuLine, .news-list a h2, .news-title, .page-number, .part1 .title, .product-list .pro-item:hover, .sidebar-widget-title, .social > a, .submit, footer, .menuResize .trigger .line {
+    background-color: var(--main-color)
+}
+
+.menufix, .theme-default .nivo-controlNav a, div.menu > ul > li > a:after, div.menu > ul > li > a:before, figure.effect-apollo figcaption::before {
+    background: var(--mnufix);
+}
+
+div.menu div.menu, figure.effect-apollo {
+    background-color: #333132;
+    color: #939598
+}
+
+    .bread-crumb ol li:last-child a span, .news-list a .date, .news-title .date, .part1 .title, div.menu div.menu li a, div.menu li > a {
+        color: var(--main-color-font);
+    }
+
+.container-in-top, .part3 .title, footer .title, footer .title span {
+    border-bottom: 1px solid var(--main-color-font);
+}
+
+#owl-demo3 .owl-next, #owl-demo3 .owl-prev {
+    color: var(--maincolor);
+}
+
+    #owl-demo3 .item:hover span, #owl-demo3 .owl-next:hover, #owl-demo3 .owl-prev:hover, .contact-info i, .input--filled .input__label--nao, .input__field--nao:focus + .input__label--nao, .news-title .parent-likes > button:hover, .part3 .col-md-6 ul li .news-item .comments:hover, .part3 .col-md-6 ul li .news-item .comments:hover i, .part3 .col-md-6 ul li .news-item .parent-likes button:hover, .part3 .col-md-6 ul li .news-item .parent-likes button:hover i, div.menu > ul > li.currentPage > a, div.menu > ul > li:hover > a {
+        color: var(--maincolor-hover);
+    }
+
+#filter-list li.active, #filter-list li:hover, .open > a:before {
+    border-color: var(--maincolor-hover);
+}
+
+#portfolio .item:hover .portfolio-text, .theme-default .nivo-controlNav a.active {
+    background: var(--maincolor-hover);
+}
+
+.material-scrolltop:hover, .pagination a.active, .pagination a:hover, .paging-model2 .paging li.active, .paging-model2 .paging li:hover, .scroller .next:hover, .scroller .prev:hover, .social > a:hover, .submit:hover {
+    background-color: var(--maincolor-hover);
+}
+
+.graphic--nao {
+    stroke: var(--main-color)
+}
+
+.input--filled .graphic--nao, .input__field--nao:focus ~ .graphic--nao {
+    stroke: #c9e650
+}

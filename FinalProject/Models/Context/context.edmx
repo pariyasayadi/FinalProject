@@ -1,0 +1,385 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="minutesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="access">
+          <Key>
+            <PropertyRef Name="num" />
+            <PropertyRef Name="codemelliuser" />
+          </Key>
+          <Property Name="num" Type="int" Nullable="false" />
+          <Property Name="codemelliuser" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fake" Type="int" />
+        </EntityType>
+        <EntityType Name="band">
+          <Key>
+            <PropertyRef Name="radif" />
+            <PropertyRef Name="minutesnum" />
+          </Key>
+          <Property Name="radif" Type="int" Nullable="false" />
+          <Property Name="minutesnum" Type="int" Nullable="false" />
+          <Property Name="matn" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="subject" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="result" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="darmodrshakhs" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="suratJalase">
+          <Key>
+            <PropertyRef Name="mnumber" />
+          </Key>
+          <Property Name="mnumber" Type="int" Nullable="false" />
+          <Property Name="tnumber" Type="int" Nullable="false" />
+          <Property Name="chandomin" Type="int" />
+          <Property Name="date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="type">
+          <Key>
+            <PropertyRef Name="numbertype" />
+          </Key>
+          <Property Name="tname" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="numbertype" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="codemelli" />
+          </Key>
+          <Property Name="fname" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="lname" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="codemelli" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="phonnumber" Type="varchar" MaxLength="20" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_access_type">
+          <End Role="type" Type="Self.type" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="access" Type="Self.access" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type">
+              <PropertyRef Name="numbertype" />
+            </Principal>
+            <Dependent Role="access">
+              <PropertyRef Name="num" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_access_user">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="access" Type="Self.access" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="codemelli" />
+            </Principal>
+            <Dependent Role="access">
+              <PropertyRef Name="codemelliuser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_band_minutess">
+          <End Role="suratJalase" Type="Self.suratJalase" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="band" Type="Self.band" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="suratJalase">
+              <PropertyRef Name="mnumber" />
+            </Principal>
+            <Dependent Role="band">
+              <PropertyRef Name="minutesnum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_minutess_type">
+          <End Role="type" Type="Self.type" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="suratJalase" Type="Self.suratJalase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type">
+              <PropertyRef Name="numbertype" />
+            </Principal>
+            <Dependent Role="suratJalase">
+              <PropertyRef Name="tnumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="minutesModelStoreContainer">
+          <EntitySet Name="access" EntityType="Self.access" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="band" EntityType="Self.band" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="suratJalase" EntityType="Self.suratJalase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="type" EntityType="Self.type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_access_type" Association="Self.fk_access_type">
+            <End Role="type" EntitySet="type" />
+            <End Role="access" EntitySet="access" />
+          </AssociationSet>
+          <AssociationSet Name="fk_access_user" Association="Self.fk_access_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="access" EntitySet="access" />
+          </AssociationSet>
+          <AssociationSet Name="fk_band_minutess" Association="Self.fk_band_minutess">
+            <End Role="suratJalase" EntitySet="suratJalase" />
+            <End Role="band" EntitySet="band" />
+          </AssociationSet>
+          <AssociationSet Name="fk_minutess_type" Association="Self.fk_minutess_type">
+            <End Role="type" EntitySet="type" />
+            <End Role="suratJalase" EntitySet="suratJalase" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="minutesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="access">
+          <Key>
+            <PropertyRef Name="num" />
+            <PropertyRef Name="codemelliuser" />
+          </Key>
+          <Property Name="num" Type="Int32" Nullable="false" />
+          <Property Name="codemelliuser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fake" Type="Int32" />
+          <NavigationProperty Name="type" Relationship="Self.fk_access_type" FromRole="access" ToRole="type" />
+          <NavigationProperty Name="user" Relationship="Self.fk_access_user" FromRole="access" ToRole="user" />
+        </EntityType>
+        <EntityType Name="band">
+          <Key>
+            <PropertyRef Name="radif" />
+            <PropertyRef Name="minutesnum" />
+          </Key>
+          <Property Name="radif" Type="Int32" Nullable="false" />
+          <Property Name="minutesnum" Type="Int32" Nullable="false" />
+          <Property Name="matn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="subject" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="result" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="darmodrshakhs" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="suratJalase" Relationship="Self.fk_band_minutess" FromRole="band" ToRole="suratJalase" />
+        </EntityType>
+        <EntityType Name="suratJalase">
+          <Key>
+            <PropertyRef Name="mnumber" />
+          </Key>
+          <Property Name="mnumber" Type="Int32" Nullable="false" />
+          <Property Name="tnumber" Type="Int32" Nullable="false" />
+          <Property Name="chandomin" Type="Int32" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="bands" Relationship="Self.fk_band_minutess" FromRole="suratJalase" ToRole="band" />
+          <NavigationProperty Name="type" Relationship="Self.fk_minutess_type" FromRole="suratJalase" ToRole="type" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="type">
+          <Key>
+            <PropertyRef Name="numbertype" />
+          </Key>
+          <Property Name="tname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="numbertype" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="accesses" Relationship="Self.fk_access_type" FromRole="type" ToRole="access" />
+          <NavigationProperty Name="suratJalases" Relationship="Self.fk_minutess_type" FromRole="type" ToRole="suratJalase" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="codemelli" />
+          </Key>
+          <Property Name="fname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="codemelli" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phonnumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="accesses" Relationship="Self.fk_access_user" FromRole="user" ToRole="access" />
+        </EntityType>
+        <Association Name="fk_access_type">
+          <End Role="type" Type="Self.type" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="access" Type="Self.access" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type">
+              <PropertyRef Name="numbertype" />
+            </Principal>
+            <Dependent Role="access">
+              <PropertyRef Name="num" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_access_user">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="access" Type="Self.access" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="codemelli" />
+            </Principal>
+            <Dependent Role="access">
+              <PropertyRef Name="codemelliuser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_band_minutess">
+          <End Role="suratJalase" Type="Self.suratJalase" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="band" Type="Self.band" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="suratJalase">
+              <PropertyRef Name="mnumber" />
+            </Principal>
+            <Dependent Role="band">
+              <PropertyRef Name="minutesnum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_minutess_type">
+          <End Role="type" Type="Self.type" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="suratJalase" Type="Self.suratJalase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type">
+              <PropertyRef Name="numbertype" />
+            </Principal>
+            <Dependent Role="suratJalase">
+              <PropertyRef Name="tnumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="minutesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="accesses" EntityType="Self.access" />
+          <EntitySet Name="bands" EntityType="Self.band" />
+          <EntitySet Name="suratJalases" EntityType="Self.suratJalase" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="types" EntityType="Self.type" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <AssociationSet Name="fk_access_type" Association="Self.fk_access_type">
+            <End Role="type" EntitySet="types" />
+            <End Role="access" EntitySet="accesses" />
+          </AssociationSet>
+          <AssociationSet Name="fk_access_user" Association="Self.fk_access_user">
+            <End Role="user" EntitySet="users" />
+            <End Role="access" EntitySet="accesses" />
+          </AssociationSet>
+          <AssociationSet Name="fk_band_minutess" Association="Self.fk_band_minutess">
+            <End Role="suratJalase" EntitySet="suratJalases" />
+            <End Role="band" EntitySet="bands" />
+          </AssociationSet>
+          <AssociationSet Name="fk_minutess_type" Association="Self.fk_minutess_type">
+            <End Role="type" EntitySet="types" />
+            <End Role="suratJalase" EntitySet="suratJalases" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="minutesModelStoreContainer" CdmEntityContainer="minutesEntities">
+          <EntitySetMapping Name="accesses">
+            <EntityTypeMapping TypeName="minutesModel.access">
+              <MappingFragment StoreEntitySet="access">
+                <ScalarProperty Name="num" ColumnName="num" />
+                <ScalarProperty Name="codemelliuser" ColumnName="codemelliuser" />
+                <ScalarProperty Name="fake" ColumnName="fake" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bands">
+            <EntityTypeMapping TypeName="minutesModel.band">
+              <MappingFragment StoreEntitySet="band">
+                <ScalarProperty Name="radif" ColumnName="radif" />
+                <ScalarProperty Name="minutesnum" ColumnName="minutesnum" />
+                <ScalarProperty Name="matn" ColumnName="matn" />
+                <ScalarProperty Name="subject" ColumnName="subject" />
+                <ScalarProperty Name="result" ColumnName="result" />
+                <ScalarProperty Name="darmodrshakhs" ColumnName="darmodrshakhs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="suratJalases">
+            <EntityTypeMapping TypeName="minutesModel.suratJalase">
+              <MappingFragment StoreEntitySet="suratJalase">
+                <ScalarProperty Name="mnumber" ColumnName="mnumber" />
+                <ScalarProperty Name="tnumber" ColumnName="tnumber" />
+                <ScalarProperty Name="chandomin" ColumnName="chandomin" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="minutesModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="types">
+            <EntityTypeMapping TypeName="minutesModel.type">
+              <MappingFragment StoreEntitySet="type">
+                <ScalarProperty Name="tname" ColumnName="tname" />
+                <ScalarProperty Name="numbertype" ColumnName="numbertype" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="minutesModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="codemelli" ColumnName="codemelli" />
+                <ScalarProperty Name="phonnumber" ColumnName="phonnumber" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

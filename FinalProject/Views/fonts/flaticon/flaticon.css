@@ -1,0 +1,201 @@
+/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 12/06/2016 11:09
+  	*/
+
+@font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.eot");
+    src: url("./Flaticon.eot?#iefix") format("embedded-opentype"), url("./Flaticon.woff") format("woff"), url("./Flaticon.ttf") format("truetype"), url("./Flaticon.svg#Flaticon") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    @font-face {
+        font-family: "Flaticon";
+        src: url("./Flaticon.svg#Flaticon") format("svg");
+    }
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {
+    font-family: Flaticon;
+    font-style: normal;
+}
+
+.flaticon-arrow:before {
+    content: "\f100";
+}
+
+.flaticon-arrows:before {
+    content: "\f101";
+}
+
+.flaticon-arrows-1:before {
+    content: "\f102";
+}
+
+.flaticon-arrows-2:before {
+    content: "\f103";
+}
+
+.flaticon-arrows-3:before {
+    content: "\f104";
+}
+
+.flaticon-arrows-4:before {
+    content: "\f105";
+}
+
+.flaticon-back:before {
+    content: "\f106";
+}
+
+.flaticon-back-arrow-circular-symbol:before {
+    content: "\f107";
+}
+
+.flaticon-bars:before {
+    content: "\f108";
+}
+
+.flaticon-dislike:before {
+    content: "\f109";
+}
+
+.flaticon-down-arrow:before {
+    content: "\f10a";
+}
+
+.flaticon-eye:before {
+    content: "\f10b";
+}
+
+.flaticon-gps:before {
+    content: "\f10c";
+}
+
+.flaticon-interface:before {
+    content: "\f10d";
+}
+
+.flaticon-like:before {
+    content: "\f10e";
+}
+
+.flaticon-location:before {
+    content: "\f10f";
+}
+
+.flaticon-location-1:before {
+    content: "\f110";
+}
+
+.flaticon-mall-wifi-sign:before {
+    content: "\f111";
+}
+
+.flaticon-negative:before {
+    content: "\f112";
+}
+
+.flaticon-refresh:before {
+    content: "\f113";
+}
+
+.flaticon-right-arrow-circular-button:before {
+    content: "\f114";
+}
+
+.flaticon-search:before {
+    content: "\f115";
+}
+
+.flaticon-search-1:before {
+    content: "\f116";
+}
+
+.flaticon-share:before {
+    content: "\f117";
+}
+
+.flaticon-signs:before {
+    content: "\f118";
+}
+
+.flaticon-signs-1:before {
+    content: "\f119";
+}
+
+.flaticon-silhouette:before {
+    content: "\f11a";
+}
+
+.flaticon-social:before {
+    content: "\f11b";
+}
+
+.flaticon-social-1:before {
+    content: "\f11c";
+}
+
+.flaticon-social-2:before {
+    content: "\f11d";
+}
+
+.flaticon-social-3:before {
+    content: "\f11e";
+}
+
+.flaticon-social-media:before {
+    content: "\f11f";
+}
+
+.flaticon-social-network:before {
+    content: "\f120";
+}
+
+.flaticon-technology:before {
+    content: "\f121";
+}
+
+.flaticon-technology-1:before {
+    content: "\f122";
+}
+
+.flaticon-technology-2:before {
+    content: "\f123";
+}
+
+.flaticon-technology-3:before {
+    content: "\f124";
+}
+
+.flaticon-technology-4:before {
+    content: "\f125";
+}
+
+.flaticon-telegram:before {
+    content: "\f126";
+}
+
+.flaticon-telegram-logo:before {
+    content: "\f127";
+}
+
+.flaticon-telephone:before {
+    content: "\f128";
+}
+
+.flaticon-telephone-with-fax:before {
+    content: "\f129";
+}
+
+.flaticon-video:before {
+    content: "\f12a";
+}
+
+.flaticon-web:before {
+    content: "\f12b";
+}

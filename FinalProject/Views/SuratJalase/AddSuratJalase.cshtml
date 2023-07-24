@@ -1,0 +1,56 @@
+﻿@model FinalProject.Models.ViewModels.MinuteController.AddSuratJalaseViewModel
+@{
+    ViewBag.Title = "AddSuratJalase";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AddSuratJalase</h2>
+<label>اطلاعات صورت جلسه</label>
+<select id="tnumber">
+@{ 
+    foreach (var item in Model.typeha)
+    {
+        <option value="@item.numbertype">@item.tname</option>
+    }
+}
+</select>
+<label>اطلاعات بندها</label>
+<button id="AddBand">اضافه کردن بند جدید</button>
+<div class="bandsInfo" id="bandsInfoDiv">
+    <div radifNumber="">
+        <label>متن</label>
+        <input type="text" class="band_" id="matn" />
+        <label>موضوع</label>
+        <input type="text" class="band_" id="subject" />
+        <label>نتیجه</label>
+        <input type="text" class="band_" id="result" />
+        <label>درباره شخص</label>
+        <input type="text" class="band_" id="darmoredeshakhs" />
+    </div>
+</div>
+
+
+<script>
+    var formInfo={
+        bandCount:1,
+        bandLastNumber:1
+    }
+
+    $("#AddBand").click(function () {
+
+        formInfo.bandCount++;
+        formInfo.bandLastNumber++;
+        var newBandForm = '<div radifNumber="' + formInfo.bandLastNumber + '">' +
+        '<label>متن</label>' +
+        '<input type="text" class="band_' + formInfo.bandLastNumber + '" id="matn" />' +
+        '<label>موضوع</label>' +
+        '<input type="text" class="band_' + formInfo.bandLastNumber + '" id="subject" />' +
+        '<label>نتیجه</label>' +
+        '<input type="text" class="band_' + formInfo.bandLastNumber + '" id="result" />' +
+        '<label>درباره شخص</label>' +
+        '<input type="text" class="band_' + formInfo.bandLastNumber + '" id="darmoredeshakhs" />' +
+   '</div>';
+
+        $("#bandsInfoDiv").append(newBandForm);
+    })
+</script>

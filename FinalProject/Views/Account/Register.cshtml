@@ -1,0 +1,63 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+    <div>
+        <form action="/Account/Register" method="post">
+            <label>          نام</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" name="fname" />
+            <br />
+            <label>نام خانوادگی</label>
+            &nbsp;
+            <input type="text" name="lname" />
+            <br />
+            <label>  شماره تلفن</label>
+            &nbsp;&nbsp;
+            <input type="text" name="phonnumber" />
+            <br />
+            <label>       کدملی</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" name="codemelli" />
+            <br />
+            <label>       پسورد</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="password" name="password" />
+            <br />
+            @*<input type="submit" value="ثبت" />*@
+            <button id="btnid" type="submit">ثبت نام</button>
+
+        </form>
+    </div>
+
+    <script>
+        $('#btnid').Click(function () {
+            $.ajax( {
+                url: "hyper_service.aspx",
+                data: FormData ,
+                success: success ,
+                error: error  }
+           )})
+    </script>
+</body>
+</html>
